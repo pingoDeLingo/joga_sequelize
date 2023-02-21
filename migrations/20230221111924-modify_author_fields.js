@@ -1,0 +1,22 @@
+'use strict';
+
+/** @type {import('sequelize-cli').Migration} */
+module.exports = {
+  async up (queryInterface, Sequelize) {
+    return Promise.all([
+      queryInterface.changeColumn('Authors', 'id', { type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+        allowNull: false
+      }),
+        queryInterface.changeColumn('Authors', 'name', { type: Sequelize.STRING, allowNull: false })
+    ])
+
+  },
+
+  async down (queryInterface) {
+    return Promise.all([
+      queryInterface.dropTable('Articles')
+    ])
+  }
+};
